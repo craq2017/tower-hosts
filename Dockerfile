@@ -11,8 +11,6 @@ RUN yum -y --setopt=tsflags=nodocs update && \
 
 EXPOSE 80
 
-# Simple startup script to avoid some issues observed with container restart
-
 ADD run-httpd.sh /run-httpd.sh
 ADD update.sh /root/update.sh
 ADD crontab /etc/cron.d/web
