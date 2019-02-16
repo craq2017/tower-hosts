@@ -6,7 +6,7 @@ LABEL Vendor="CentOS" \
 
 
 RUN yum -y --setopt=tsflags=nodocs update && \
-    yum -y --setopt=tsflags=nodocs install httpd crontabs && \
+    yum -y --setopt=tsflags=nodocs install httpd crontabs postgresql && \
     yum clean all
 
 EXPOSE 80
