@@ -14,6 +14,7 @@ EXPOSE 80
 # Simple startup script to avoid some issues observed with container restart
 ADD run-httpd.sh /run-httpd.sh
 ADD crontab /etc/cron.d/web
+ADD update.sh /root/update.sh
 RUN chmod 0644 /etc/cron.d/web
 RUN cron
 RUN chmod -v +x /run-httpd.sh
