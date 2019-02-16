@@ -6,17 +6,21 @@ LABEL Vendor="CentOS" \
 
 
 RUN yum -y --setopt=tsflags=nodocs update && \
-    yum -y --setopt=tsflags=nodocs install httpd cron && \
+    yum -y --setopt=tsflags=nodocs install httpd crontabs && \
     yum clean all
 
 EXPOSE 80
 
 # Simple startup script to avoid some issues observed with container restart
+
+
 ADD run-httpd.sh /run-httpd.sh
 ADD crontab /etc/cron.d/web
 ADD update.sh /root/update.sh
 RUN chmod 0644 /etc/cron.d/web
-RUN cron
+RUN sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
+RUN chmod 0644 /etc/cron.d/web
+RUN crontab /etc/cron.d/web
 RUN chmod -v +x /run-httpd.sh
 
 CMD ["/run-httpd.sh"]
