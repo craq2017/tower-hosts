@@ -22,5 +22,6 @@ RUN sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
 RUN chmod 0644 /etc/cron.d/web
 RUN crontab /etc/cron.d/web
 RUN chmod -v +x /run-httpd.sh
+RUN chmod -v +x /root/update.sh
 
 CMD ["/run-httpd.sh"]
