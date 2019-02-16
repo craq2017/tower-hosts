@@ -13,11 +13,13 @@ EXPOSE 80
 
 # Simple startup script to avoid some issues observed with container restart
 
-ADD crontab /etc/cron.d/web
 ADD run-httpd.sh /run-httpd.sh
 ADD update.sh /root/update.sh
+ADD crontab /etc/cron.d/web
 RUN chmod 0644 /etc/cron.d/web
 RUN sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
+RUN touch /var/log/cron.log
 RUN chmod +x /root/update.sh
 RUN chmod -v +x /run-httpd.sh
+RUN crontab /etc/cron.d/web
 CMD ["/run-httpd.sh"]
