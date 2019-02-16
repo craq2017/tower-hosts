@@ -1,2 +1,7 @@
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/root
+MAILTO=root
+
+
 */5 * * * *  /root/update.sh
 # Don't remove the empty line at the end of this file. It is required to run the cron job
