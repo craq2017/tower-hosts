@@ -15,7 +15,6 @@ EXPOSE 80
 
 
 ADD run-httpd.sh /run-httpd.sh
-ADD crontab /etc/cron.d/web
 ADD update.sh /root/update.sh
 RUN chmod 0644 /etc/cron.d/web
 RUN sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
